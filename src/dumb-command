@@ -1,0 +1,11 @@
+#!/bin/sh
+
+# Configure locale
+
+if [ -n "${LANG}" ] && [ -n "${LANGUAGE}" ] && which localedef > /dev/null ; then
+    localedef -i ${LANGUAGE} -f UTF-8 ${LANG} > /dev/null 2> /dev/null
+fi
+
+# Run command
+
+gosu ${USER:-root} "$@"
