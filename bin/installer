@@ -21,20 +21,20 @@ fi
 
 case $1 in
     install )
-        curl -sLo /usr/local/sbin/dumb-command "https://github.com/timonier/dumb-entrypoint/raw/master/src/dumb-command"
-        chmod +x /usr/local/sbin/dumb-command
+        curl -sLo ${INSTALL_DIRECTORY:-/usr/local/sbin}/dumb-entrypoint "https://github.com/timonier/dumb-entrypoint/raw/master/src/dumb-entrypoint"
+        chmod +x ${INSTALL_DIRECTORY:-/usr/local/sbin}/dumb-entrypoint
 
-        curl -sLo /usr/local/sbin/dumb-init "https://github.com/Yelp/dumb-init/releases/download/v1.2.0/dumb-init_1.2.0_amd64"
-        chmod +x /usr/local/sbin/dumb-init
+        curl -sLo ${INSTALL_DIRECTORY:-/usr/local/sbin}/dumb-init "https://github.com/Yelp/dumb-init/releases/download/v1.2.0/dumb-init_1.2.0_amd64"
+        chmod +x ${INSTALL_DIRECTORY:-/usr/local/sbin}/dumb-init
 
-        curl -sLo /usr/local/sbin/gosu "https://github.com/tianon/gosu/releases/download/1.10/gosu-amd64"
-        chmod +sx /usr/local/sbin/gosu
+        curl -sLo ${INSTALL_DIRECTORY:-/usr/local/sbin}/gosu "https://github.com/tianon/gosu/releases/download/1.10/gosu-amd64"
+        chmod +sx ${INSTALL_DIRECTORY:-/usr/local/sbin}/gosu
     ;;
 
     uninstall )
-        rm -f /usr/local/sbin/dumb-command
-        rm -f /usr/local/sbin/dumb-init
-        rm -f /usr/local/sbin/gosu
+        rm -f ${INSTALL_DIRECTORY:-/usr/local/sbin}/dumb-entrypoint
+        rm -f ${INSTALL_DIRECTORY:-/usr/local/sbin}/dumb-init
+        rm -f ${INSTALL_DIRECTORY:-/usr/local/sbin}/gosu
     ;;
 
     * )

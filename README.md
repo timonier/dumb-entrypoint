@@ -4,7 +4,7 @@ Minimal entrypoint for Linux containers
 
 ## Installation
 
-* Copy `src/dumb-command` into an executable folder (like `/usr/local/sbin`).
+* Copy `src/dumb-entrypoint` into an executable folder (like `/usr/local/sbin`).
 * Install [yelp/dumb-init](https://github.com/Yelp/dumb-init) into an executable folder (like `/usr/local/sbin`).
 * Install [tianon/gosu](https://github.com/tianon/gosu) into an executable folder (like `/usr/local/sbin`).
 
@@ -12,23 +12,27 @@ Linux users can use the [installer](https://github.com/timonier/dumb-entrypoint/
 
 ```sh
 curl -sL "https://github.com/timonier/dumb-entrypoint/raw/master/bin/installer" | sudo sh -s install
+# Install scripts into "/usr/local/sbin"
+
+curl -sL "https://github.com/timonier/dumb-entrypoint/raw/master/bin/installer" | sudo INSTALL_DIRECTORY="/usr/sbin" sh -s install
+# Install scripts into "/usr/sbin"
 ```
 
 ## Usage
 
-* Mount `dumb-command`, `dumb-init` and `gosu` into the container (or mount the executable folder).
+* Mount `dumb-entrypoint`, `dumb-init` and `gosu` into the container (or mount the executable folder).
 * Use `dumb-init` as entrypoint.
-* Prefix your command by `dumb-command`.
+* Prefix your command by `dumb-entrypoint`.
 
 ```sh
 docker run \
     $(env | cut -d= -f1 | awk '{print "-e", $1}') \
     -v /etc/passwd:/etc/passwd:ro \
-    -v $(which dumb-command):/usr/local/sbin/dumb-command:ro \
+    -v $(which dumb-entrypoint):/usr/local/sbin/dumb-entrypoint:ro \
     -v $(which dumb-init):/usr/local/sbin/dumb-init:ro \
     -v $(which gosu):/usr/local/sbin/gosu:ro \
     --entrypoint dumb-init \
-    ubuntu:16.04 dumb-command printenv
+    ubuntu:16.04 dumb-entrypoint printenv
 ```
 
 ## Contributing
