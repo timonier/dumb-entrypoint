@@ -2,17 +2,17 @@
 
 # Check current user
 
-if [ $(id -u) -ne 0 ] ; then
-    echo "Impossible to continue without root privileges." 1>&2
+if [ "$(id -u)" -ne 0 ] ; then
+    echo 1>&2 "Impossible to continue without root privileges."
     exit 1
 fi
 
 # Configure locale
 
 if [ -n "${LANG}" ] && [ -n "${LANGUAGE}" ] && which localedef > /dev/null ; then
-    localedef -i ${LANGUAGE} -f UTF-8 ${LANG} > /dev/null 2> /dev/null
+    localedef --charmap UTF-8 --inputfile "${LANGUAGE}" "${LANG}" > /dev/null 2> /dev/null
 fi
 
 # Run command
 
-gosu ${USER:-root} "$@"
+gosu "${USER:-root}" "$@"

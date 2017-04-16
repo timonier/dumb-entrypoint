@@ -11,10 +11,10 @@ Minimal entrypoint for Linux containers
 Linux users can use the [installer](https://github.com/timonier/dumb-entrypoint/blob/master/bin/installer):
 
 ```sh
-curl -sL "https://github.com/timonier/dumb-entrypoint/raw/master/bin/installer" | sudo sh -s install
+curl --location "https://github.com/timonier/dumb-entrypoint/raw/master/bin/installer" | sudo sh -s -- install
 # Install scripts into "/usr/local/sbin"
 
-curl -sL "https://github.com/timonier/dumb-entrypoint/raw/master/bin/installer" | sudo INSTALL_DIRECTORY="/usr/sbin" sh -s install
+curl --location "https://github.com/timonier/dumb-entrypoint/raw/master/bin/installer" | sudo INSTALL_DIRECTORY="/usr/sbin" sh -s -- install
 # Install scripts into "/usr/sbin"
 ```
 
@@ -26,13 +26,13 @@ curl -sL "https://github.com/timonier/dumb-entrypoint/raw/master/bin/installer" 
 
 ```sh
 docker run \
-    $(env | cut -d= -f1 | awk '{print "-e", $1}') \
-    -v /etc/passwd:/etc/passwd:ro \
-    -v $(which dumb-entrypoint):/usr/local/sbin/dumb-entrypoint:ro \
-    -v $(which dumb-init):/usr/local/sbin/dumb-init:ro \
-    -v $(which gosu):/usr/local/sbin/gosu:ro \
     --entrypoint dumb-init \
-    ubuntu:16.04 dumb-entrypoint printenv
+    $(env | cut -d= -f1 | awk '{print "--env", $1}') \
+    --volume /etc/passwd:/etc/passwd:ro \
+    --volume $(which dumb-entrypoint):/usr/local/sbin/dumb-entrypoint:ro \
+    --volume $(which dumb-init):/usr/local/sbin/dumb-init:ro \
+    --volume $(which gosu):/usr/local/sbin/gosu:ro \
+    ubuntu:latest dumb-entrypoint printenv
 ```
 
 ## Contributing
@@ -45,6 +45,7 @@ docker run \
 
 ## Links
 
-* [localedef](http://manpages.ubuntu.com/manpages/xenial/man1/localedef.1.html)
+* [localedef](http://manpages.ubuntu.com/manpages/latest/man1/localedef.1.html)
 * [tianon/gosu](https://github.com/tianon/gosu)
+* [timonier/version-lister](https://github.com/timonier/version-lister)
 * [yelp/dumb-init](https://github.com/Yelp/dumb-init)
