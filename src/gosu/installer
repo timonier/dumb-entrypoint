@@ -1,0 +1,41 @@
+#!/bin/sh
+set -ex
+
+# Check environment
+
+fail() {
+    echo 1>&2 "$1"
+    echo 1>&2 "Usage: $(basename "$0") [install|uninstall]"
+    exit 1
+}
+
+if [ "$#" -lt 1 ] ; then
+    fail "Invalid number of arguments."
+fi
+
+if [ "$(id -u)" -ne 0 ] ; then
+    fail "Impossible to prepare the system without root privileges."
+fi
+
+if [ "$(uname)" != "Linux" ] ; then
+    fail "Impossible to prepare another operating system than Linux."
+fi
+
+# Run installer
+
+INSTALL_DIRECTORY="${INSTALL_DIRECTORY:-/usr/local/sbin}"
+
+case "$1" in
+    install )
+        export $(curl "https://raw.githubusercontent.com/timonier/version-lister/release/generated/gosu/latest" | xargs)
+        curl --location --output "${INSTALL_DIRECTORY}/gosu" "https://github.com/tianon/gosu/releases/download/${GOSU_VERSION}/gosu-amd64"
+        chmod +sx "${INSTALL_DIRECTORY}/gosu"
+    ;;
+
+    uninstall )
+        rm -f "${INSTALL_DIRECTORY}/gosu"
+    ;;
+
+    * )
+        fail "Argument \"$1\" is invalid."
+esac

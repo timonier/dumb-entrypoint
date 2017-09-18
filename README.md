@@ -1,39 +1,96 @@
 # README
 
-Minimal entrypoint for Linux containers
+Sets of entrypoints for Linux containers
 
 ## Installation
 
-* Copy `src/dumb-entrypoint` into an executable folder (like `/usr/local/sbin`).
-* Install [yelp/dumb-init](https://github.com/Yelp/dumb-init) into an executable folder (like `/usr/local/sbin`).
-* Install [tianon/gosu](https://github.com/tianon/gosu) into an executable folder (like `/usr/local/sbin`).
-
-Linux users can use the [installer](https://github.com/timonier/dumb-entrypoint/blob/master/bin/installer):
+### dumb-entrypoint
 
 ```sh
-curl --location "https://github.com/timonier/dumb-entrypoint/raw/master/bin/installer" | sudo sh -s -- install
-# Install scripts into "/usr/local/sbin"
+# Define installation folder
 
-curl --location "https://github.com/timonier/dumb-entrypoint/raw/master/bin/installer" | sudo INSTALL_DIRECTORY="/usr/sbin" sh -s -- install
-# Install scripts into "/usr/sbin"
+export INSTALL_DIRECTORY="/usr/sbin"
+
+# Install gosu (requires by dumb-entrypoint)
+
+curl --location "https://github.com/timonier/dumb-entrypoint/raw/master/src/gosu/installer" | sh -s -- install
+
+# Install dumb-entrypoint
+
+curl --location "https://github.com/timonier/dumb-entrypoint/raw/master/src/dumb-entrypoint/installer" | sh -s -- install
+
+# Remove dumb-entrypoint
+
+curl --location "https://github.com/timonier/dumb-entrypoint/raw/master/src/dumb-entrypoint/installer" | sh -s -- uninstall
 ```
 
-## Usage
+__Note__: If you do not define `INSTALL_DIRECTORY`, `dumb-entrypoint` will be installed in `/usr/local/sbin`.
 
-* Mount `dumb-entrypoint`, `dumb-init` and `gosu` into the container (or mount the executable folder).
-* Use `dumb-init` as entrypoint.
-* Prefix your command by `dumb-entrypoint`.
+### dumb-init
 
 ```sh
-docker run \
-    --entrypoint dumb-init \
-    $(env | cut -d= -f1 | awk '{print "--env", $1}') \
-    --volume /etc/passwd:/etc/passwd:ro \
-    --volume $(which dumb-entrypoint):/usr/local/sbin/dumb-entrypoint:ro \
-    --volume $(which dumb-init):/usr/local/sbin/dumb-init:ro \
-    --volume $(which gosu):/usr/local/sbin/gosu:ro \
-    ubuntu:latest dumb-entrypoint printenv
+# Define installation folder
+
+export INSTALL_DIRECTORY="/usr/sbin"
+
+# Install gosu
+
+curl --location "https://github.com/timonier/dumb-entrypoint/raw/master/src/dumb-init/installer" | sh -s -- install
+
+# Remove gosu
+
+curl --location "https://github.com/timonier/dumb-entrypoint/raw/master/src/dumb-init/installer" | sh -s -- uninstall
 ```
+
+__Note__: If you do not define `INSTALL_DIRECTORY`, `dumb-init` will be installed in `/usr/local/sbin`.
+
+### gosu
+
+```sh
+# Define installation folder
+
+export INSTALL_DIRECTORY="/usr/sbin"
+
+# Install gosu
+
+curl --location "https://github.com/timonier/dumb-entrypoint/raw/master/src/gosu/installer" | sh -s -- install
+
+# Remove gosu
+
+curl --location "https://github.com/timonier/dumb-entrypoint/raw/master/src/gosu/installer" | sh -s -- uninstall
+```
+
+__Note__: If you do not define `INSTALL_DIRECTORY`, `gosu` will be installed in `/usr/local/sbin`.
+
+### s6-overlay
+
+```sh
+# Install s6-overlay
+
+curl --location "https://github.com/timonier/dumb-entrypoint/raw/master/src/s6-overlay/installer" | sh -s -- install
+```
+
+__Note 1__: It is not possible to change the installation folder.
+
+__Note 2__: It is not possible to remove `s6-overlay`.
+
+### syslog-stdout
+
+```sh
+# Define installation folder
+
+export INSTALL_DIRECTORY="/usr/sbin"
+
+# Install syslog-stdout
+
+curl --location "https://github.com/timonier/dumb-entrypoint/raw/master/src/syslog-stdout/installer" | sh -s -- install
+
+# Remove syslog-stdout
+
+curl --location "https://github.com/timonier/dumb-entrypoint/raw/master/src/syslog-stdout/installer" | sh -s -- uninstall
+```
+
+__Note__: If you do not define `INSTALL_DIRECTORY`, `gosu` will be installed in `/usr/local/sbin`.
 
 ## Contributing
 
@@ -45,7 +102,9 @@ docker run \
 
 ## Links
 
+* [just-containers/s6-overlay](https://github.com/just-containers/s6-overlay)
 * [localedef](http://manpages.ubuntu.com/manpages/latest/man1/localedef.1.html)
 * [tianon/gosu](https://github.com/tianon/gosu)
+* [timonier/syslog-stdout](https://github.com/timonier/syslog-stdout)
 * [timonier/version-lister](https://github.com/timonier/version-lister)
 * [yelp/dumb-init](https://github.com/Yelp/dumb-init)
