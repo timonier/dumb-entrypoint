@@ -15,4 +15,4 @@ fi
 
 # Run command
 
-gosu "${USER:-root}" "$@"
+gosu "${USER:-root}" "${@:-sh}"

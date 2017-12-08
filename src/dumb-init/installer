@@ -27,7 +27,7 @@ INSTALL_DIRECTORY="${INSTALL_DIRECTORY:-/usr/local/sbin}"
 
 case "$1" in
     install )
-        export $(curl "https://raw.githubusercontent.com/timonier/version-lister/release/generated/dumb-init/latest" | xargs)
+        export $(curl --location "https://github.com/timonier/version-lister/raw/generated/yelp/dumb-init/latest" | xargs)
         curl --location --output "${INSTALL_DIRECTORY}/dumb-init" "https://github.com/Yelp/dumb-init/releases/download/v${DUMB_INIT_VERSION}/dumb-init_${DUMB_INIT_VERSION}_amd64"
         chmod +x "${INSTALL_DIRECTORY}/dumb-init"
     ;;

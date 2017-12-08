@@ -27,7 +27,7 @@ INSTALL_DIRECTORY="${INSTALL_DIRECTORY:-/usr/local/sbin}"
 
 case "$1" in
     install )
-        export $(curl "https://raw.githubusercontent.com/timonier/version-lister/release/generated/syslog-stdout/latest" | xargs)
+        export $(curl --location "https://github.com/timonier/version-lister/raw/generated/timonier/syslog-stdout/latest" | xargs)
         curl --location "https://github.com/timonier/syslog-stdout/releases/download/v${SYSLOG_STDOUT_VERSION}/syslog-stdout.tar.gz" | tar --directory /usr/sbin --extract --gzip
         chmod +x "${INSTALL_DIRECTORY}/syslog-stdout"
     ;;
