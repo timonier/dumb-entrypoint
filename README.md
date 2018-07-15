@@ -100,6 +100,8 @@ __Note__: If you do not define `INSTALL_DIRECTORY`, `gosu` will be installed in 
 4. Push to the branch: `git push origin my-new-feature`.
 5. Submit a pull request.
 
+If you like / use this project, please let me known by adding a [★](https://help.github.com/articles/about-stars/) on the [GitHub repository](https://github.com/timonier/dumb-entrypoint).
+
 ## Links
 
 * [just-containers/s6-overlay](https://github.com/just-containers/s6-overlay)
