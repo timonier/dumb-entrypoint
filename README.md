@@ -9,88 +9,74 @@ Sets of entrypoints for Linux containers
 ```sh
 # Define installation folder
 
-export INSTALL_DIRECTORY="/usr/sbin"
+export INSTALL_DIRECTORY=/usr/local/sbin
 
-# Install gosu (requires by dumb-entrypoint)
+# Use local installation
 
-curl --location "https://github.com/timonier/dumb-entrypoint/raw/master/src/gosu/installer" | sh -s -- install
+sudo src/dumb-entrypoint/installer install
 
-# Install dumb-entrypoint
+# Use remote installation
 
-curl --location "https://github.com/timonier/dumb-entrypoint/raw/master/src/dumb-entrypoint/installer" | sh -s -- install
-
-# Remove dumb-entrypoint
-
-curl --location "https://github.com/timonier/dumb-entrypoint/raw/master/src/dumb-entrypoint/installer" | sh -s -- uninstall
+curl --location "https://github.com/timonier/dumb-entrypoint/raw/master/src/dumb-entrypoint/installer" | sudo sh -s -- install
 ```
 
-__Note__: If you do not define `INSTALL_DIRECTORY`, `dumb-entrypoint` will be installed in `/usr/local/sbin`.
+__Note 1__: If you do not define `INSTALL_DIRECTORY`, `dumb-entrypoint` will be installed in `/usr/sbin`.
+
+__Note 2__: `gosu` is required by `dumb-entrypoint`.
 
 ### dumb-init
 
 ```sh
 # Define installation folder
 
-export INSTALL_DIRECTORY="/usr/sbin"
+export INSTALL_DIRECTORY=/usr/local/sbin
 
-# Install gosu
+# Use local installation
 
-curl --location "https://github.com/timonier/dumb-entrypoint/raw/master/src/dumb-init/installer" | sh -s -- install
+sudo src/dumb-init/installer install
 
-# Remove gosu
+# Use remote installation
 
-curl --location "https://github.com/timonier/dumb-entrypoint/raw/master/src/dumb-init/installer" | sh -s -- uninstall
+curl --location "https://github.com/timonier/dumb-entrypoint/raw/master/src/dumb-init/installer" | sudo sh -s -- install
 ```
 
-__Note__: If you do not define `INSTALL_DIRECTORY`, `dumb-init` will be installed in `/usr/local/sbin`.
+__Note__: If you do not define `INSTALL_DIRECTORY`, `dumb-init` will be installed in `/usr/sbin`.
 
 ### gosu
 
 ```sh
 # Define installation folder
 
-export INSTALL_DIRECTORY="/usr/sbin"
+export INSTALL_DIRECTORY=/usr/local/sbin
 
-# Install gosu
+# Use local installation
 
-curl --location "https://github.com/timonier/dumb-entrypoint/raw/master/src/gosu/installer" | sh -s -- install
+sudo src/gosu/installer install
 
-# Remove gosu
+# Use remote installation
 
-curl --location "https://github.com/timonier/dumb-entrypoint/raw/master/src/gosu/installer" | sh -s -- uninstall
+curl --location "https://github.com/timonier/dumb-entrypoint/raw/master/src/gosu/installer" | sudo sh -s -- install
 ```
 
-__Note__: If you do not define `INSTALL_DIRECTORY`, `gosu` will be installed in `/usr/local/sbin`.
+__Note__: If you do not define `INSTALL_DIRECTORY`, `gosu` will be installed in `/usr/sbin`.
 
 ### s6-overlay
 
 ```sh
-# Install s6-overlay
+# Use local installation
 
-curl --location "https://github.com/timonier/dumb-entrypoint/raw/master/src/s6-overlay/installer" | sh -s -- install
+sudo src/s6-overlay/installer install
+
+# Use remote installation
+
+curl --location "https://github.com/timonier/dumb-entrypoint/raw/master/src/s6-overlay/installer" | sudo sh -s -- install
 ```
 
 __Note 1__: It is not possible to change the installation folder.
 
 __Note 2__: It is not possible to remove `s6-overlay`.
 
-### syslog-stdout
-
-```sh
-# Define installation folder
-
-export INSTALL_DIRECTORY="/usr/sbin"
-
-# Install syslog-stdout
-
-curl --location "https://github.com/timonier/dumb-entrypoint/raw/master/src/syslog-stdout/installer" | sh -s -- install
-
-# Remove syslog-stdout
-
-curl --location "https://github.com/timonier/dumb-entrypoint/raw/master/src/syslog-stdout/installer" | sh -s -- uninstall
-```
-
-__Note__: If you do not define `INSTALL_DIRECTORY`, `gosu` will be installed in `/usr/local/sbin`.
+__Note__: If you do not define `INSTALL_DIRECTORY`, `gosu` will be installed in `/usr/sbin`.
 
 ## Contributing
 
@@ -107,6 +93,5 @@ If you like / use this project, please let me known by adding a [★](https://he
 * [just-containers/s6-overlay](https://github.com/just-containers/s6-overlay)
 * [localedef](http://manpages.ubuntu.com/manpages/latest/man1/localedef.1.html)
 * [tianon/gosu](https://github.com/tianon/gosu)
-* [timonier/syslog-stdout](https://github.com/timonier/syslog-stdout)
 * [timonier/version-lister](https://github.com/timonier/version-lister)
 * [yelp/dumb-init](https://github.com/Yelp/dumb-init)

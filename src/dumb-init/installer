@@ -1,41 +1,35 @@
 #!/bin/sh
-set -ex
+set -e -u -x
 
 # Check environment
 
 fail() {
     echo 1>&2 "$1"
     echo 1>&2 "Usage: $(basename "$0") [install|uninstall]"
-    exit 1
+    exit 255
 }
 
-if [ "$#" -lt 1 ] ; then
+if [ "$#" -lt 1 ]; then
     fail "Invalid number of arguments."
-fi
-
-if [ "$(id -u)" -ne 0 ] ; then
-    fail "Impossible to prepare the system without root privileges."
-fi
-
-if [ "$(uname)" != "Linux" ] ; then
-    fail "Impossible to prepare another operating system than Linux."
 fi
 
 # Run installer
 
-INSTALL_DIRECTORY="${INSTALL_DIRECTORY:-/usr/local/sbin}"
+INSTALL_DIRECTORY="${INSTALL_DIRECTORY:-/usr/sbin}"
 
 case "$1" in
-    install )
+    install)
+        mkdir -p "${INSTALL_DIRECTORY}"
         export $(curl --location "https://github.com/timonier/version-lister/raw/generated/yelp/dumb-init/latest" | xargs)
-        curl --location --output "${INSTALL_DIRECTORY}/dumb-init" "https://github.com/Yelp/dumb-init/releases/download/v${DUMB_INIT_VERSION}/dumb-init_${DUMB_INIT_VERSION}_amd64"
-        chmod +x "${INSTALL_DIRECTORY}/dumb-init"
-    ;;
+        curl --location --output "${INSTALL_DIRECTORY}"/dumb-init "${DUMB_INIT_RELEASE}"
+        chmod +x "${INSTALL_DIRECTORY}"/dumb-init
+        ;;
 
-    uninstall )
-        rm -f "${INSTALL_DIRECTORY}/dumb-init"
-    ;;
+    uninstall)
+        rm -f "${INSTALL_DIRECTORY}"/dumb-init
+        ;;
 
-    * )
+    *)
         fail "Argument \"$1\" is invalid."
+        ;;
 esac

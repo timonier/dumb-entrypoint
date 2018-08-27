@@ -1,17 +1,18 @@
 #!/bin/sh
-set -e
+set -e -u
 
 # Check current user
 
-if [ "$(id -u)" -ne 0 ] ; then
-    echo 1>&2 "Impossible to continue without root privileges."
-    exit 1
+if [ "$(id -u)" -ne 0 ]; then
+    echo 1>&2 "Impossible to execute this script without root privileges."
+    exit 255
 fi
 
 # Configure locale
 
-if [ -n "${LANG}" ] && [ -n "${LANGUAGE}" ] && which localedef > /dev/null ; then
-    localedef --charmap UTF-8 --inputfile "${LANGUAGE}" "${LANG}" > /dev/null 2> /dev/null
+if which localedef > /dev/null; then
+    LANG="${LANG:-en_US.UTF-8}" LANGUAGE="${LANGUAGE:-en_US}"
+    localedef --charmap UTF-8 --inputfile "${LANGUAGE}" "${LANG}" || :
 fi
 
 # Run command

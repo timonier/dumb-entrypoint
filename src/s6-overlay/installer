@@ -1,38 +1,35 @@
 #!/bin/sh
-set -ex
+set -e -u -x
 
 # Check environment
 
 fail() {
     echo 1>&2 "$1"
     echo 1>&2 "Usage: $(basename "$0") [install|uninstall]"
-    exit 1
+    exit 255
 }
 
-if [ "$#" -lt 1 ] ; then
+if [ "$#" -lt 1 ]; then
     fail "Invalid number of arguments."
 fi
 
-if [ "$(id -u)" -ne 0 ] ; then
-    fail "Impossible to prepare the system without root privileges."
-fi
-
-if [ "$(uname)" != "Linux" ] ; then
-    fail "Impossible to prepare another operating system than Linux."
+if [ "$(id -u)" -ne 0 ]; then
+    fail "Impossible to execute this script without root privileges."
 fi
 
 # Run installer
 
 case "$1" in
-    install )
+    install)
         export $(curl --location "https://github.com/timonier/version-lister/raw/generated/just-containers/s6-overlay/latest" | xargs)
-        curl --location "https://github.com/just-containers/s6-overlay/releases/download/v${S6_OVERLAY_VERSION}/s6-overlay-amd64.tar.gz" | tar --directory / --extract --gzip \
-    ;;
+        curl --location "${S6_OVERLAY_RELEASE}" | tar --directory / --extract --gzip
+        ;;
 
-    uninstall )
+    uninstall)
         fail "Impossible to remove s6-overlay"
-    ;;
+        ;;
 
-    * )
+    *)
         fail "Argument \"$1\" is invalid."
+        ;;
 esac
