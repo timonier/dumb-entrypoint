@@ -25,7 +25,7 @@ case "$1" in
         if [ -t 0 ]; then
             cp dumb-entrypoint "${INSTALL_DIRECTORY}"/dumb-entrypoint
         else
-            curl --location --output "${INSTALL_DIRECTORY}"/dumb-entrypoint "https://github.com/timonier/dumb-entrypoint/raw/master/src/dumb-entrypoint/dumb-entrypoint"
+            curl --location --output "${INSTALL_DIRECTORY}"/dumb-entrypoint "https://gitlab.com/timonier/dumb-entrypoint/raw/master/src/dumb-entrypoint/dumb-entrypoint"
         fi
 
         chmod +x "${INSTALL_DIRECTORY}"/dumb-entrypoint

@@ -20,7 +20,7 @@ INSTALL_DIRECTORY="${INSTALL_DIRECTORY:-/usr/sbin}"
 case "$1" in
     install)
         mkdir -p "${INSTALL_DIRECTORY}"
-        export $(curl --location "https://github.com/timonier/version-lister/raw/generated/tianon/gosu/latest" | xargs)
+        export $(curl --location "https://gitlab.com/timonier/version-lister/raw/generated/tianon/gosu/latest" | xargs)
         curl --location --output "${INSTALL_DIRECTORY}"/gosu "${GOSU_RELEASE}"
         chmod +sx "${INSTALL_DIRECTORY}"/gosu
         ;;

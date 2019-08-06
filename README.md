@@ -17,7 +17,7 @@ sudo src/dockerize/installer install
 
 # Use remote installation
 
-curl --location "https://github.com/timonier/dumb-entrypoint/raw/master/src/dockerize/installer" | sudo sh -s -- install
+curl --location "https://gitlab.com/timonier/dumb-entrypoint/raw/master/src/dockerize/installer" | sudo sh -s -- install
 ```
 
 __Note__: If you do not define `INSTALL_DIRECTORY`, `dockerize` will be installed in `/usr/sbin`.
@@ -35,7 +35,7 @@ sudo src/dumb-entrypoint/installer install
 
 # Use remote installation
 
-curl --location "https://github.com/timonier/dumb-entrypoint/raw/master/src/dumb-entrypoint/installer" | sudo sh -s -- install
+curl --location "https://gitlab.com/timonier/dumb-entrypoint/raw/master/src/dumb-entrypoint/installer" | sudo sh -s -- install
 ```
 
 __Note 1__: If you do not define `INSTALL_DIRECTORY`, `dumb-entrypoint` will be installed in `/usr/sbin`.
@@ -55,7 +55,7 @@ sudo src/dumb-init/installer install
 
 # Use remote installation
 
-curl --location "https://github.com/timonier/dumb-entrypoint/raw/master/src/dumb-init/installer" | sudo sh -s -- install
+curl --location "https://gitlab.com/timonier/dumb-entrypoint/raw/master/src/dumb-init/installer" | sudo sh -s -- install
 ```
 
 __Note__: If you do not define `INSTALL_DIRECTORY`, `dumb-init` will be installed in `/usr/sbin`.
@@ -73,7 +73,7 @@ sudo src/gosu/installer install
 
 # Use remote installation
 
-curl --location "https://github.com/timonier/dumb-entrypoint/raw/master/src/gosu/installer" | sudo sh -s -- install
+curl --location "https://gitlab.com/timonier/dumb-entrypoint/raw/master/src/gosu/installer" | sudo sh -s -- install
 ```
 
 __Note__: If you do not define `INSTALL_DIRECTORY`, `gosu` will be installed in `/usr/sbin`.
@@ -87,7 +87,7 @@ sudo src/s6-overlay/installer install
 
 # Use remote installation
 
-curl --location "https://github.com/timonier/dumb-entrypoint/raw/master/src/s6-overlay/installer" | sudo sh -s -- install
+curl --location "https://gitlab.com/timonier/dumb-entrypoint/raw/master/src/s6-overlay/installer" | sudo sh -s -- install
 ```
 
 __Note 1__: It is not possible to change the installation folder.
@@ -100,9 +100,11 @@ __Note 2__: It is not possible to remove `s6-overlay`.
 2. Create your branch: `git checkout -b my-new-feature`.
 3. Commit your changes: `git commit -am 'Add some feature'`.
 4. Push to the branch: `git push origin my-new-feature`.
-5. Submit a pull request.
+5. Submit a [merge request](https://docs.gitlab.com/ee/user/project/merge_requests/).
 
-If you like / use this project, please let me known by adding a [★](https://help.github.com/articles/about-stars/) on the [GitHub repository](https://github.com/timonier/dumb-entrypoint).
+__Note__: [GitHub repository](https://github.com/timonier/dumb-entrypoint) is a mirror. [Merge request](https://docs.gitlab.com/ee/user/project/merge_requests/) has to be submitted to the [GitLab repository](https://gitlab.com/timonier/dumb-entrypoint).
+
+If you like / use this project, please let me known by adding a [★](https://help.github.com/articles/about-stars/) on the [GitHub repository](https://github.com/timonier/dumb-entrypoint) or on the [GitLab repository](https://gitlab.com/timonier/dumb-entrypoint).
 
 ## Links
 
@@ -110,5 +112,5 @@ If you like / use this project, please let me known by adding a [★](https://he
 * [jwilder/dockerize](https://github.com/jwilder/dockerize)
 * [localedef](http://manpages.ubuntu.com/manpages/latest/man1/localedef.1.html)
 * [tianon/gosu](https://github.com/tianon/gosu)
-* [timonier/version-lister](https://github.com/timonier/version-lister)
+* [timonier/version-lister](https://gitlab.com/timonier/version-lister)
 * [yelp/dumb-init](https://github.com/Yelp/dumb-init)

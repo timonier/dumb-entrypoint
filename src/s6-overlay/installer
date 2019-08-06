@@ -21,7 +21,7 @@ fi
 
 case "$1" in
     install)
-        export $(curl --location "https://github.com/timonier/version-lister/raw/generated/just-containers/s6-overlay/latest" | xargs)
+        export $(curl --location "https://gitlab.com/timonier/version-lister/raw/generated/just-containers/s6-overlay/latest" | xargs)
         curl --location "${S6_OVERLAY_RELEASE}" | tar --directory / --extract --gzip
         ;;
 
