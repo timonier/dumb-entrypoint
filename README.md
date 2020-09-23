@@ -2,6 +2,8 @@
 
 Sets of entrypoints for Linux containers
 
+⚠️ This project is no longer maintained. ⚠️
+
 ## Installation
 
 ### dockerize
@@ -93,18 +95,6 @@ curl --location "https://gitlab.com/timonier/dumb-entrypoint/raw/master/src/s6-o
 __Note 1__: It is not possible to change the installation folder.
 
 __Note 2__: It is not possible to remove `s6-overlay`.
-
-## Contributing
-
-1. Fork it.
-2. Create your branch: `git checkout -b my-new-feature`.
-3. Commit your changes: `git commit -am 'Add some feature'`.
-4. Push to the branch: `git push origin my-new-feature`.
-5. Submit a [merge request](https://docs.gitlab.com/ee/user/project/merge_requests/).
-
-__Note__: [GitHub repository](https://github.com/timonier/dumb-entrypoint) is a mirror. [Merge request](https://docs.gitlab.com/ee/user/project/merge_requests/) has to be submitted to the [GitLab repository](https://gitlab.com/timonier/dumb-entrypoint).
-
-If you like / use this project, please let me known by adding a [★](https://help.github.com/articles/about-stars/) on the [GitHub repository](https://github.com/timonier/dumb-entrypoint) or on the [GitLab repository](https://gitlab.com/timonier/dumb-entrypoint).
 
 ## Links
 
